@@ -29,6 +29,19 @@ const images = [
     './images/28.png',
     './images/29.png',
     './images/30.png',
+    './images/31.png',
+    './images/32.png',
+    './images/33.png',
+    './images/34.png',
+    './images/35.png',
+    './images/36.png',
+    './images/37.png',
+    './images/38.png',
+    './images/39.png',
+    './images/40.png'
+    
+
+
 ]
 
 let hasTriedToFlipFirstTime = false;
