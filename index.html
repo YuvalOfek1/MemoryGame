@@ -29,7 +29,7 @@
         <div id="top-bar" class="d-flex justify-content-between m-3">
             <h2 id="greeting-player-name"></h2>
             <div id="time"><h2 id="text-time"></h2></div>
-            <input type="button" id="exit-btn" class="btn btn-danger btn-sm" value="Exit Game">
+            <input type="button" class="btn btn-danger btn-sm exit-btn" value="Exit Game">
         </div>  
         <div id="board-container" class="d-flex row">
             
@@ -43,8 +43,8 @@
 
 
     </div>
-    <div id="winning-container"></div>
-
+    <div id="winning-container"><input type="button" class="btn btn-danger btn-sm exit-btn" value="Exit Game" onclick="exitGame()"></div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>

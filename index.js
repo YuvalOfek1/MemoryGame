@@ -13,19 +13,16 @@ const images = [
     './images/12.png',
     './images/13.png',
     './images/14.png',
-    './images/15.png',
     './images/16.png',
     './images/17.png',
     './images/18.png',
     './images/19.png',
-    './images/20.png',
     './images/21.png',
     './images/22.png',
     './images/23.png',
     './images/24.png',
     './images/25.png',
     './images/26.png',
-    './images/27.png',
     './images/28.png',
     './images/29.png',
     './images/30.png',
@@ -35,8 +32,6 @@ const images = [
     './images/34.png',
     './images/35.png',
     './images/36.png',
-    './images/37.png',
-    './images/38.png',
     './images/39.png',
     './images/40.png'
     
@@ -60,25 +55,12 @@ $('#game-container').addClass('hidden');
 $('#winning-container').addClass('hidden');
 let numOfPairs = 2;
 
-$('#game-form').on('submit',(e)=>{
-    $('#game-container').removeClass('hidden');
-    $('#game-form').addClass('hidden');
-    playerName = $('#player-name-input').val();
-    console.log(playerName)
-    const pairs = $('#card-pairs-input').val();
-    numOfPairs=pairs;
-    console.log(numOfPairs);
-    $('#greeting-player-name').text(`Good Luck, ${playerName.slice(0,1).toUpperCase()}${playerName.slice(1, playerName.length).toLowerCase()}!`);
-    e.preventDefault();
-    initBoard(numOfPairs);
-})
-
 $(document).ready(()=>{
     $('#resume-btn').addClass('hidden');
     $('#pause-btn').on('click',()=>{
         if(!paused){
-            clearInterval(myInterval);
             paused = true;
+            clearInterval(myInterval);
             $('#pause-btn').addClass('hidden');
             $('#resume-btn').removeClass('hidden');
         }
@@ -94,33 +76,46 @@ $(document).ready(()=>{
         }
     })
 
-    $('#exit-btn').on('click',()=>{
+    $('.exit-btn').on('click',()=>{
         exitGame();
     })
 
     $('#reset-btn').on('click',()=>{
-
         resetGame();
-
     })
         
 })
 
+
+
+$('#game-form').on('submit',(e)=>{
+    $('#game-form').addClass('hidden');
+    playerName = $('#player-name-input').val();
+    const pairs = $('#card-pairs-input').val();
+    numOfPairs=pairs;
+    $('#greeting-player-name').text(`Good Luck, ${playerName.slice(0,1).toUpperCase()}${playerName.slice(1, playerName.length).toLowerCase()}!`);
+    $('#game-container').removeClass('hidden');
+    e.preventDefault();
+    initBoard(numOfPairs);
+})
+
+
+
 const exitGame = () => {
 
     $('#game-container').addClass('hidden');
-        $('#game-form').removeClass('hidden');
-        $('#board-container').empty();
-        clearInterval(myInterval);
-        paused = false;
-        secondsAfterPaused=0;
-        minutesAfterPaused=0;
-        $('#resume-btn').addClass('hidden');
-        $('#pause-btn').removeClass('hidden');
-        $('#player-name-input').val('');
-        $('#card-pairs-input').val('');
-        hasTriedToFlipFirstTime = false;
-        $('#time').html('');
+    $('#game-form').removeClass('hidden');
+    $('#board-container').empty();
+    clearInterval(myInterval);
+    paused = false;
+    secondsAfterPaused=0;
+    minutesAfterPaused=0;
+    $('#resume-btn').addClass('hidden');
+    $('#pause-btn').removeClass('hidden');
+    $('#player-name-input').val('');
+    $('#card-pairs-input').val('');
+    hasTriedToFlipFirstTime = false;
+    $('#time').html('');
 
 }
 const resetGame = () => {
@@ -132,6 +127,8 @@ const resetGame = () => {
         $('#resume-btn').addClass('hidden');
         $('#pause-btn').removeClass('hidden');
         hasTriedToFlipFirstTime = false;
+        matchedCards = [];
+        flippedCards = [];
         $('#time').html('');
         initBoard(numOfPairs);
 }
@@ -188,6 +185,7 @@ const getRandomImages = (array, numOfPairs)=> {
     let randomImages = [];
     while(randomImages.length < numOfPairs) {
         let random = Math.floor(Math.random() * array.length);
+        if(!randomImages.includes(array[random]))
             randomImages.push(array[random]);
     }
     return randomImages
@@ -244,7 +242,8 @@ const showWinningMessage = () => {
     //hide all the component with sliding up animation and slide down the winning-container
     $('#board-container').slideUp(1000);
     $('#game-container').slideUp(1000);
-    $('#winning-container').html(`<h1>Congratulations!</h1><h2>You won!</h2><h3>It took you ${minutesAfterPaused} minutes and ${secondsAfterPaused} seconds to win!</h3>
+    const exitBtn = `<div id='winning-exit-btn-div'><input type="button" class="btn btn-danger btn-sm exit-btn" value="Exit Game" onclick="exitGame()"></input></div>`;
+    $('#winning-container').html(`${exitBtn}<h1>Congratulations!</h1><h2>You won!</h2><h3>It took you ${minutesAfterPaused} minutes and ${secondsAfterPaused} seconds to win!</h3>
     <button id="play-again-btn" class="btn btn-primary">Play Again</button>
     <input type="number" id="pairs-input" placeholder="Number of Pairs" min="2" max="30" required>
     `)

@@ -89,7 +89,8 @@ input:focus{
 }
 
 #board-container{
-    width:60%;
+    justify-content: center;
+    width: 60%;
     margin: 0 auto;
     margin-bottom: 40px;
 
@@ -102,4 +103,10 @@ input:focus{
 #winning-container{
     text-align: center;
     margin-top: 50px;
+}
+#winning-exit-btn-div{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 20px;
+    padding: 4px 8px;
 }
