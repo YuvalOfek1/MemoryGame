@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Memory Game</title>
+</head>
+<body>
+    <div id="game-form" class="d-flex flex-column justify-content-center align-items-center pt-5">
+        <h2 class="text-info text-center"> Welcome To Our Memory Game!</h2>
+        <form class="">
+            <div id="player-name-container" class="p-3">
+                <label for="player-name-input">Player name:</label>
+                <input id="player-name-input" type="text" placeholder="Player Name:" required></input>
+            </div>
+            <div id="card-pairs-container" class="">
+                <label for="card-pairs-input">Choose Number of Card Pairs: (min 2 | max 30):</label>
+                <input id="card-pairs-input" type="number" min="2" max="30" required >
+            </div>
+            <button id="start-btn" class="btn btn-success ml-7 mt-3" type="submit">Start Game</button>
+        </form>
+    </div>
+
+
+    <div id="game-container" class="mt-5">
+        <div id="top-bar" class="d-flex justify-content-between m-3">
+            <h2 id="greeting-player-name"></h2>
+            <div id="time"><h2 id="text-time"></h2></div>
+            <input type="button" id="exit-btn" class="btn btn-danger btn-sm" value="Exit Game">
+        </div>  
+        <div id="board-container" class="d-flex row">
+            
+
+        </div>
+        <div id="game-btns" class="d-flex justify-content-center align-items-center column-gap-3">
+            <input type="button" id="pause-btn" class="btn-warning btn-sm mr-3" value="Pause Game">
+            <input type="button" id="resume-btn" class="btn-success btn-sm mr-3" value="Resume Game">
+            <input type="button" id="reset-btn" class="btn-info btn-sm mr-3" value="Reset Game">
+        </div>
+
+
+    </div>
+    <div id="winning-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+</html>
